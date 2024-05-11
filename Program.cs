@@ -1,20 +1,32 @@
 using System;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-namespace DemoApplication
+struct student
 {
-    struct student
-    {
-           // Write Your Code Here
-    };
-    class Tutorial
-    {
+    public string name;
+    public int age;
+    public int marks;
+};
 
-        static void Main(string[] args)
+class Program
+{
+    static void Main(string[] args)
+    {
+        student[] s = new student[5];
+        for (int i = 0; i < 5; i++)
         {
-            // Write Your Code Here
+            
+           s[i].name = Console.ReadLine();
+           s[i].age = Convert.ToInt32(Console.ReadLine());
+            s[i].marks = Convert.ToInt32(Console.ReadLine());
         }
+       
+        string path = @"C:\studentInfo.txt";
+        using (StreamWriter sw = File.AppendText(path))
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                sw.WriteLine(s[i].name + " " + s[i].age + " " + s[i].marks);
+            }
+        }
+        Console.WriteLine(File.ReadAllText(path));
     }
 }
